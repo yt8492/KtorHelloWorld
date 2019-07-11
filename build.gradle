@@ -35,6 +35,10 @@ dependencies {
     compile "ch.qos.logback:logback-classic:$logback_version"
     compile "io.ktor:ktor-server-core:$ktor_version"
     compile "io.ktor:ktor-html-builder:$ktor_version"
+    compile "io.ktor:ktor-jackson:$ktor_version"
     compile "org.jetbrains:kotlin-css-jvm:1.0.0-pre.31-kotlin-1.2.41"
     testCompile "io.ktor:ktor-server-tests:$ktor_version"
+    compile "org.jetbrains.exposed:exposed:$exposed_version"
+    compile "org.postgresql:postgresql:$postgres_version"
+    compile 'com.zaxxer:HikariCP:2.7.8'
 }

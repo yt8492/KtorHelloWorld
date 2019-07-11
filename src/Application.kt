@@ -1,38 +1,35 @@
 package com.yt8492
 
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
-import io.ktor.routing.*
-import io.ktor.http.*
-import io.ktor.html.*
-import kotlinx.html.*
-import kotlinx.css.*
+import com.yt8492.controller.userController
+import com.yt8492.infra.db.User
+import com.yt8492.infra.db.Users
+import io.ktor.application.install
+import io.ktor.features.ContentNegotiation
+import io.ktor.jackson.jackson
+import io.ktor.routing.routing
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.netty.Netty
+import io.ktor.util.KtorExperimentalAPI
+import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.transactions.transaction
 
-fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
-
-@Suppress("unused") // Referenced in application.conf
-@kotlin.jvm.JvmOverloads
-fun Application.module(testing: Boolean = false) {
-    routing {
-        get("/") {
-            call.respondHtml {
-                lang = "ja"
-                head {
-                    title = "KtorHelloWorld"
-                    meta {
-                        charset = "UTF-8"
-                    }
-                }
-                body {
-                    h1 {
-                        + "Hello Ktor!"
-                    }
-                    p {
-                        + "This page is created by Ktor."
-                    }
-                }
-            }
+@KtorExperimentalAPI
+fun main() {
+    DatabaseFactory.init()
+    transaction {
+        SchemaUtils.create(Users)
+        User.new {
+            name = "swallowtail"
+            age = 24
         }
     }
+    val server = embeddedServer(Netty, 8492) {
+        install(ContentNegotiation) {
+            jackson()
+        }
+        routing {
+            userController()
+        }
+    }
+    server.start()
 }
