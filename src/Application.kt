@@ -14,7 +14,7 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 
 @KtorExperimentalAPI
-fun main(args: Array<String>) {
+fun main() {
     DatabaseFactory.init()
     transaction {
         SchemaUtils.create(Users)
