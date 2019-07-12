@@ -1,7 +1,6 @@
 package com.yt8492
 
 import com.yt8492.controller.userController
-import com.yt8492.infra.db.User
 import com.yt8492.infra.db.Users
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
@@ -18,10 +17,6 @@ fun main() {
     DatabaseFactory.init()
     transaction {
         SchemaUtils.create(Users)
-        User.new {
-            name = "swallowtail"
-            age = 24
-        }
     }
     val server = embeddedServer(Netty, 8080) {
         install(ContentNegotiation) {
