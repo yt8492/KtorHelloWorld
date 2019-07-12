@@ -1,2 +1,2 @@
 #!/bin/bash
-./gradlew run
+./gradlew run --stacktrace
