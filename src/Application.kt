@@ -9,11 +9,9 @@ import io.ktor.jackson.jackson
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import io.ktor.util.KtorExperimentalAPI
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 
-@KtorExperimentalAPI
 fun main() {
     DatabaseFactory.init()
     transaction {
