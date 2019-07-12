@@ -10,9 +10,9 @@ import org.jetbrains.exposed.sql.Database
 @KtorExperimentalAPI
 object DatabaseFactory {
     private val appConfig = HoconApplicationConfig(ConfigFactory.load())
-    private val dbUrl = appConfig.property("db.jdbcUrl").getString()
-    private val dbUser = appConfig.property("db.dbUser").getString()
-    private val dbPassword = appConfig.property("db.dbPassword").getString()
+    private val dbUrl = appConfig.property("ktor.db.jdbcUrl").getString()
+    private val dbUser = appConfig.property("ktor.db.dbUser").getString()
+    private val dbPassword = appConfig.property("ktor.db.dbPassword").getString()
 
     fun init() {
         Database.connect(hikari())

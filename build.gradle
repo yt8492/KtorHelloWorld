@@ -14,7 +14,7 @@ apply plugin: 'application'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 group 'KtorHelloWorld'
-version '1.0.6-checkbug'
+version '1.0.7'
 mainClassName = "io.ktor.server.netty.EngineMain"
 
 sourceSets {
