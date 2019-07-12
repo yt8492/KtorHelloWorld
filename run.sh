@@ -1,3 +1,3 @@
 #!/bin/bash
 ./gradlew shadowJar
-java -jar /KtorHelloWorld/build/libs/KtorHelloWorld-1.0.7-all.jar
+java -jar /KtorHelloWorld/build/libs/KtorHelloWorld-1.0.8-all.jar

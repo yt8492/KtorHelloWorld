@@ -23,7 +23,7 @@ fun main() {
             age = 24
         }
     }
-    val server = embeddedServer(Netty, 8492) {
+    val server = embeddedServer(Netty, 8080) {
         install(ContentNegotiation) {
             jackson()
         }
