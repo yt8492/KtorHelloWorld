@@ -1,0 +1,29 @@
+version: "2"
+services:
+  db:
+    image: postgres:10.1-alpine
+    container_name: "ktor-hello-world-db"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_DB: ktor-hello-world-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  app:
+    image: yt8492/ktor-hello-world:latest
+    container_name: "ktor-hello-world"
+    ports:
+      - "8492:8080"
+    mem_limit: 1024m
+    cpu_shares: 2048
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/ktor-hello-world-db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      - db
+volumes:
+  db-data:
+    driver: local
